@@ -325,9 +325,12 @@ function getMoinMoinFromAtext(pad, atext) {
       } else if (line.listTypeName === 'bullet') {
         listChar = '* ';
       }
-      pieces.push(new Array(line.listLevel + 1).join(' ') + listChar);
+	pieces.push(new Array(line.listLevel + 1).join(' ') + listChar);
+	// jh 20160504 insert BR makro
+	pieces.push(lineObj.content, '<<BR>>\n');
+    } else {
+      pieces.push(lineObj.content, '\n');
     }
-    pieces.push(lineObj.content, '\n');
   }
 
   if (lastLineState.codeLine) {
